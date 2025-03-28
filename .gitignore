@@ -9,6 +9,9 @@ __pycache__/
 # Annoyinh MacOS File
 .DS_Store
 
+# Ignore Data files
+data/*
+
 # Distribution / packaging
 .Python
 build/
