@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Analysis - Compare</title>
+    <!-- link to css will go here later -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Crypto Analysis</h1>
+
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">View Trend</a></li>
+            <li><a href="{{ url_for('compare') }}">Compare Coins</a></li>
+        </ul>
+    </nav>
+
+    <p>Select two cryptocurrencies to compare.</p>
+
+    <!-- controls and comparison results will go here -->
+    <div>
+        <label for="crypto-select-1">Coin 1:</label>
+        <select name="crypto1" id="crypto-select-1">
+            <option value="bitcoin">Bitcoin</option>
+            <option value="ethereum">Ethereum</option>
+             <option value="--select--" selected>-- Select Coin --</option>
+        </select>
+    </div>
+    <div>
+        <label for="crypto-select-2">Coin 2:</label>
+        <select name="crypto2" id="crypto-select-2">
+            <option value="bitcoin">Bitcoin</option>
+            <option value="ethereum">Ethereum</option>
+            <option value="--select--" selected>-- Select Coin --</option>
+        </select>
+    </div>
+    <div>
+        <button id="compare-button">Compare</button>
+    </div>
+
+    <div id="comparison-results">
+        <!-- comparison data will be displayed here -->
+    </div>
+
+</body>
+</html> 

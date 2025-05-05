@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>crypto analysis - home</title>
+    <!-- link css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- include chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>crypto analysis</h1>
+
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">view trend</a></li>
+            <li><a href="{{ url_for('compare') }}">compare coins</a></li>
+        </ul>
+    </nav>
+
+    <p>welcome! select a cryptocurrency to view its trend.</p>
+
+    <!-- controls and chart area -->
+    <div>
+        <label for="crypto-select-home">cryptocurrency:</label>
+        <!-- updated dropdown with 5 coins + placeholder -->
+        <select name="crypto" id="crypto-select-home">
+            <option value="--select--" selected>-- select coin --</option> <!-- placeholder first -->
+            <option value="bitcoin">bitcoin</option>
+            <option value="ethereum">ethereum</option>
+            <option value="tether">tether</option>
+            <option value="binancecoin">binance coin</option> <!-- note: value is 'binancecoin' -->
+            <option value="solana">solana</option>
+        </select>
+        <button id="view-button">show trend</button>
+    </div>
+
+    <div id="chart-container">
+        <!-- chart canvas will be added here by js -->
+    </div>
+
+    <div id="analysis-results">
+        <!-- analysis results will go here -->
+    </div>
+
+    <!-- link our javascript file -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html> 
