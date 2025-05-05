@@ -23,30 +23,35 @@ import pandas as pd
 cg = CoinGeckoAPI()
 
 def fetch_historical_data(coin_id, days=30, currency='usd'):
-    # fetches historical price data for a given coin id using pycoingecko
+    # fetch historical price data for a coin
     try:
-        # fetch data for the specific coin_id
+        # fetch data
         data = cg.get_coin_market_chart_by_id(id=coin_id, vs_currency=currency, days=days)
 
-        # extract timestamps and prices
+        # extract prices data
         prices_data = data.get('prices', [])
 
-        if not prices_data: # handle case where no price data is returned
+        # handle empty response
+        if not prices_data:
              print(f"no price data found for {coin_id}")
              return None
 
-        # prepare data for charting libraries
-        # timestamps are unix ms, prices are in the specified currency
-        timestamps = [item[0] for item in prices_data]
-        prices = [item[1] for item in prices_data]
+        # create a pandas dataframe
+        df = pd.DataFrame(prices_data, columns=['timestamp_ms', 'price'])
 
-        # return data suitable for json serialization
+        # convert unix ms to datetime
+        df['timestamp'] = pd.to_datetime(df['timestamp_ms'], unit='ms')
+
+        # prepare data for json (convert datetime to string)
+        timestamps = df['timestamp'].dt.strftime('%Y-%m-%d %H:%M:%S').tolist()
+        prices = df['price'].tolist()
+
+        # return dict for json response
         return {'timestamps': timestamps, 'prices': prices}
 
     except Exception as e:
-        # basic error handling for api call issues
         print(f"error fetching data for {coin_id} using pycoingecko: {e}")
-        return None # return none on error
+        return None
 
 # --- commented out example usage ---
 # if __name__ == '__main__':
